@@ -27,6 +27,9 @@
                         "format": "int32"
                     }
                 ],
+                "tags": [
+                    "Articles"
+                ],
                 "responses": {
                     "200": {
                         "description": "An array of articles",
@@ -297,9 +300,29 @@
                     "type": "array",
                     "description": "Article content, consists of sections",
                     "items": {
-                        "type": "object",
+                        "$ref": "#/definitions/Section",
                         "description": "Section object, attributes vary depending on type"
                     }
+                }
+            }
+        },
+        "Section": {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Section type"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "Section content"
+                },
+                "headline": {
+                    "type": "string",
+                    "description": "Optional headline"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "Optional source"
                 }
             }
         },
