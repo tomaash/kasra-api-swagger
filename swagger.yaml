@@ -38,13 +38,33 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  /articles/{slug}:
+  /articles:
+    post:
+      summary: Create or update article. To update article, make sure it's slug or _id is present in the body
+      tags:
+        - Articles
+      responses:
+        400:
+          description: Body empty or validation failed
+          schema:
+            $ref: '#/definitions/Error'
+
+        201:
+          description: Created or updated article
+          schema:
+            $ref: '#/definitions/Article'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      
+  /article/{id}:
     get:
-      summary: Get article by slug
+      summary: Get article by slug or id 
       parameters:
-        - name: slug
+        - name: id
           in: path
-          description: Slug of article to be retrieved
+          description: Slug or id of article to be retrieved
           required: true
           type: string
       tags:
